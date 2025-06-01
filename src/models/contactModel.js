@@ -28,8 +28,9 @@ const contactSchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-    collection: 'mydb', 
+    collection: 'mydb2', 
   }
 );
 
 export const Contact = mongoose.model('Contact', contactSchema);
+
