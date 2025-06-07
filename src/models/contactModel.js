@@ -5,14 +5,18 @@ const contactSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, 'Name is required'],
+      trim: true,
     },
     phoneNumber: {
       type: String,
       required: [true, 'Phone number is required'],
+      trim: true,
     },
     email: {
       type: String,
       default: null,
+      trim: true,
+      lowercase: true,
     },
     isFavourite: {
       type: Boolean,
@@ -28,9 +32,15 @@ const contactSchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-    collection: 'mydb2', 
+    collection: 'contacts', // обычно коллекция = contacts, а не mydb2!
   }
 );
 
-export const Contact = mongoose.model('Contact', contactSchema);
+// Экспортируем как default (если хочешь, можно именованный экспорт)
+const Contact = mongoose.model('Contact', contactSchema);
+export default Contact;
+
+// Или, если хочешь именно именованный (сохранить твой стиль):
+// export const Contact = mongoose.model('Contact', contactSchema);
+
 
