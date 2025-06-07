@@ -18,7 +18,7 @@ export const setupServer = () => {
   app.use(express.json());
   app.use(pinoHttp());
 
-  // 👇 если хочешь эндпоинты вида /api/contacts
+  
   app.use('/api/contacts', contactsRouter);
 
   app.get('/', (req, res) => {

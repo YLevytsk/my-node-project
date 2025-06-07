@@ -32,15 +32,13 @@ const contactSchema = new mongoose.Schema(
   {
     timestamps: true,
     versionKey: false,
-    collection: 'contacts', // обычно коллекция = contacts, а не mydb2!
+    collection: 'contacts', 
   }
 );
 
-// Экспортируем как default (если хочешь, можно именованный экспорт)
+
 const Contact = mongoose.model('Contact', contactSchema);
 export default Contact;
 
-// Или, если хочешь именно именованный (сохранить твой стиль):
-// export const Contact = mongoose.model('Contact', contactSchema);
 
 
