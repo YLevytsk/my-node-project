@@ -18,8 +18,8 @@ export const setupServer = () => {
   app.use(express.json());
   app.use(pinoHttp());
 
-  
-  app.use('/api/contacts', contactsRouter);
+  // Виправлено тут!
+  app.use('/contacts', contactsRouter);
 
   app.get('/', (req, res) => {
     res.json({ message: 'Welcome to the contacts API' });
@@ -32,4 +32,5 @@ export const setupServer = () => {
     console.log(`✅ Server is running on port ${PORT}`);
   });
 };
+
 
