@@ -8,8 +8,8 @@ export default defineConfig([
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
       globals: {
-        ...globals.node,     // <-- вот это добавляет process, __dirname, require и др.
-        ...globals.browser,  // если вдруг где-то нужен браузерный JS
+        ...globals.node,    
+        ...globals.browser, 
       },
     },
   },

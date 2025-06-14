@@ -18,7 +18,7 @@ export const setupServer = () => {
   app.use(express.json());
   app.use(pinoHttp());
 
-  // Виправлено тут!
+ 
   app.use('/contacts', contactsRouter);
 
   app.get('/', (req, res) => {

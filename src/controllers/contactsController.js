@@ -8,7 +8,6 @@ import {
   patchContact,
 } from '../services/contacts.js';
 
-// GET /contacts — з пагінацією, сортуванням, фільтрацією
 export async function getAllContactsController(req, res) {
   const {
     page = 1,
@@ -23,10 +22,10 @@ export async function getAllContactsController(req, res) {
   const limit = parseInt(perPage);
   const skip = (pageNumber - 1) * limit;
 
-  // Отримати всі контакти
+  
   let allContacts = await getAllContacts();
 
-  // 🔎 Фільтрація по типу (type -> contactType)
+ 
   if (type) {
     allContacts = allContacts.filter(
       (contact) =>
@@ -34,7 +33,7 @@ export async function getAllContactsController(req, res) {
     );
   }
 
-  // ⭐ Фільтрація по isFavourite
+ 
   if (isFavourite !== undefined) {
     const isFavBool = isFavourite === 'true';
     allContacts = allContacts.filter(
@@ -42,7 +41,7 @@ export async function getAllContactsController(req, res) {
     );
   }
 
-  // 🔃 Сортування
+  
   const sortedContacts = [...allContacts].sort((a, b) => {
     const aValue = a[sortBy]?.toString().toLowerCase() || '';
     const bValue = b[sortBy]?.toString().toLowerCase() || '';
@@ -52,7 +51,7 @@ export async function getAllContactsController(req, res) {
       : aValue.localeCompare(bValue);
   });
 
-  // 📄 Пагінація
+ 
   const totalItems = sortedContacts.length;
   const totalPages = Math.ceil(totalItems / limit);
   const hasPreviousPage = pageNumber > 1;
@@ -75,7 +74,7 @@ export async function getAllContactsController(req, res) {
   });
 }
 
-// GET /contacts/:contactId
+
 export async function getContactByIdController(req, res) {
   const { contactId } = req.params;
   const contact = await getContactById(contactId);
@@ -91,7 +90,7 @@ export async function getContactByIdController(req, res) {
   });
 }
 
-// POST /contacts
+
 export async function createContactController(req, res) {
   const { name, phoneNumber, contactType, email, isFavourite } = req.body;
 
@@ -117,7 +116,7 @@ export async function createContactController(req, res) {
   });
 }
 
-// DELETE /contacts/:contactId
+
 export async function deleteContactController(req, res) {
   const { contactId } = req.params;
   const deletedContact = await removeContact(contactId);
@@ -129,7 +128,7 @@ export async function deleteContactController(req, res) {
   res.status(204).end();
 }
 
-// PUT /contacts/:contactId
+
 export async function updateContactController(req, res) {
   const { contactId } = req.params;
   const updateData = req.body;
@@ -146,7 +145,7 @@ export async function updateContactController(req, res) {
   });
 }
 
-// PATCH /contacts/:contactId
+
 export async function patchContactController(req, res) {
   const { contactId } = req.params;
   const updateData = req.body;

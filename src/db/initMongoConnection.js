@@ -3,9 +3,9 @@
 import mongoose from 'mongoose';
 
 
-// Функция для инициализации подключения к MongoDB
+
 export const initMongoConnection = async () => {
-  // Деструктурируем переменные окружения
+  
   const {
     MONGODB_USER,
     MONGODB_PASSWORD,
