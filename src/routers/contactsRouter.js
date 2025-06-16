@@ -1,4 +1,5 @@
 import express from 'express';
+
 import {
   getAllContactsController,
   getContactByIdController,
@@ -11,6 +12,7 @@ import {
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { isValidId } from '../middlewares/isValidId.js';
 import { validateBody } from '../middlewares/validateBody.js';
+
 import {
   addContactSchema,
   updateContactSchema,
@@ -24,7 +26,7 @@ router.get('/', ctrlWrapper(getAllContactsController));
 // GET contact by ID
 router.get('/:contactId', isValidId, ctrlWrapper(getContactByIdController));
 
-// POST new contact — Joi validation for full body
+// POST new contact — full body validation
 router.post(
   '/',
   validateBody(addContactSchema),
@@ -34,10 +36,15 @@ router.post(
 // DELETE contact by ID
 router.delete('/:contactId', isValidId, ctrlWrapper(deleteContactController));
 
-// PUT contact by ID — optional (повне оновлення)
-router.put('/:contactId', isValidId, ctrlWrapper(updateContactController));
+// PUT contact by ID — full update, use same validation as for POST
+router.put(
+  '/:contactId',
+  isValidId,
+  validateBody(addContactSchema),
+  ctrlWrapper(updateContactController)
+);
 
-// PATCH contact — Joi validation for partial update
+// PATCH contact — partial update validation
 router.patch(
   '/:contactId',
   isValidId,
@@ -46,6 +53,7 @@ router.patch(
 );
 
 export default router;
+
 
 
 
